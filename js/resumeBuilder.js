@@ -5,13 +5,15 @@ var bio = {
 	"role" : "Network Engineer",
 	"contacts" : {
 		"mobile": "510-590-6850",
-		"email" : "widmer66@yahoo.com"
+		"email" : "widmer66@yahoo.com",
+		"github" : "Valcarcel",
+		"location": "San Ramon, CA",
 	},
-	"Welcomemessage" : "Hello, this is my welcome message.",
+	"Welcomemessage" : "Network Engineer, wannabe programmer",
 	"skills": [
-		"Network Enineering", "Capacity Planning", "PERL"
+		"Cisco and Juniper Routing and Switching", "Network capacity management", "PERL programming"
 	],
-	"bioPic": "images/fry.jpg"
+	"bioPic": "images/my-face.jpg"
 }
 
 
@@ -60,6 +62,7 @@ var work = {
 	]
 }
 
+
 // Contninue to fill in Work Experience here.
 
 var projects = {
@@ -84,7 +87,37 @@ var projects = {
 // Can I acces the work object?
 
 
-//console.log(work.jobs[job].Description);
+
+function displayHeader() {
+	var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
+	$("#header").prepend(formattedHeaderRole);
+	var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
+	$("#header").prepend(formattedHeaderName);
+
+	//var formattedContacgtGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts.mobile);
+	//$("#header").append(formattedContacgtGeneric);
+	var formattedHTMLmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	$("#topContacts, #footerContacts").append(formattedHTMLmobile);
+	var formattedHTMLemail = HTMLemail.replace("%data%", bio.contacts.email);
+	$("#topContacts, #footerContacts").append(formattedHTMLemail);
+	var formattedHTMLgithub = HTMLgithub.replace("%data%", bio.contacts.github );
+	$("#topContacts, #footerContacts").append(formattedHTMLgithub);
+	var formattedHTMLlocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	$("#topContacts, #footerContacts").append(formattedHTMLlocation);
+
+	var formattedHTMLbioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+	$("#header").append(formattedHTMLbioPic);
+	var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.Welcomemessage);
+	$("#header").append(formattedHTMLwelcomeMsg);
+	$("#header").append(HTMLskillsStart);
+	for (skill in bio.skills) {
+		var formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
+		$("#header:last").append(formattedSkill);
+	}
+	//var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.Welcomemessage);
+
+}
+
 
 function displayWork() {
 for (job in work.jobs) {
@@ -104,6 +137,8 @@ for (job in work.jobs) {
 	//$("#main").append(formattedEmployerTitle);
 }
 }
+
+displayHeader();
  displayWork();
 
 
@@ -158,3 +193,5 @@ projects.display = function () {
 }
 
 projects.display();
+
+$("#mapDiv").append(googleMap);
