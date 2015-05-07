@@ -1,29 +1,25 @@
-// work, projects, bio, edu
 
 var bio = {
-	"name" : "Ramon Widmer",
-	"role" : "Network Engineer",
-	"contacts" : {
+	"name": "Ramon Widmer",
+	"role": "Network Engineer",
+	"contacts": {
 		"mobile": "510-590-6850",
-		"email" : "widmer66@yahoo.com",
-		"github" : "Valcarcel",
+		"email": "widmer66@yahoo.com",
+		"github": "Valcarcel",
 		"location": "San Ramon, CA",
 	},
-	"Welcomemessage" : "Network Engineer, wannabe programmer",
+	"Welcomemessage": "Network Engineer, wannabe programmer",
 	"skills": [
 		"Cisco and Juniper Routing and Switching", "Network capacity management", "PERL programming"
 	],
 	"bioPic": "images/my-face.jpg"
-}
+};
 
-function displayHeader() {
+bio.display = function() {
 	var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
 	$("#header").prepend(formattedHeaderRole);
 	var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
 	$("#header").prepend(formattedHeaderName);
-
-	//var formattedContacgtGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts.mobile);
-	//$("#header").append(formattedContacgtGeneric);
 	var formattedHTMLmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
 	$("#topContacts, #footerContacts").append(formattedHTMLmobile);
 	var formattedHTMLemail = HTMLemail.replace("%data%", bio.contacts.email);
@@ -41,12 +37,12 @@ function displayHeader() {
 	for (skill in bio.skills) {
 		var formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
 		$("#header:last").append(formattedSkill);
-	}
-}
+	};
+};
 
-displayHeader();
+bio.display();
 
- var Education = {
+var Education = {
 	"schools": [
 		{
 			"name": "UC Davis",
@@ -61,21 +57,21 @@ displayHeader();
 			"location": "Stockton, California",
 			"degree": "AA",
 			"major": "Electron Microscopy",
-			"dates" : "June 1989",
+			"dates": "June 1989",
 			"url": "https://www.deltacollege.edu/"
-		}
+		},
 	],
-	"onlineCourses" : [
+	"onlineCourses": [
 		{
 			"title": "Intro to HTML and CSS",
 			"school": "Udacity",
 			"dates": "April 2015",
 			"url": "https://www.udacity.com/course/progress#!/c-ud304-nd"
-		}
-	]
-}
+		},
+	],
+};
 
-function displayEducation() {
+education.display = function() {
 	for (school in Education.schools) {
 
 		var formattedSchool = HTMLschoolName.replace("%data%",Education.schools[school].name);
@@ -84,7 +80,6 @@ function displayEducation() {
 		var formattedSchoolDates = HTMLschoolDates.replace("%data%",Education.schools[school].dates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",Education.schools[school].location);
 		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",Education.schools[school].major);
-		console.log(formattedSchoolMajor);
 
 		$("#education").append(HTMLschoolStart);
 		$(".education-entry:last").append(formattedSchoolAndDegree);
@@ -104,13 +99,13 @@ function displayEducation() {
 		$(".education-entry:last").append(formattedOnlineTitleSchool);
 		$(".education-entry:last").append(formattedOnlineDates);
 		$(".education-entry:last").append(formattedOnlineURL);
-	}
-}
+	};
+};
 
-displayEducation();
+education.display();
 
 var work = {
-	"jobs": [	// jobs array in the work object
+	"jobs": [
 		{
 		"employer": "AT&T",
 		"location": "San Ramon, CA",
@@ -138,98 +133,40 @@ var work = {
 		"title": "Electron Microscopist",
 		"dates": "August 1994",
 		"Description": "Biological transmission and scanning electron microscopy. Specimen preparation techniques include autoradiography, and immunofluorescence for light and confocal microscopy."
-		}
+		},
 	]
-}
+};
 
+work.display = function() {
+	for (job in work.jobs) {
 
-// Contninue to fill in Work Experience here.
+		$("#workExperience").append(HTMLworkStart);
+
+		var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		var formattedDate = HTMLworkDates.replace("%data%",work.jobs[job].dates);
+		var formattedDesc = HTMLworkDescription.replace("%data%",work.jobs[job].Description);
+
+		$(".work-entry:last").append(formattedEmployerTitle);
+		$(".work-entry:last").append(formattedDate);
+		$(".work-entry:last").append(formattedDesc);
+	};
+};
+
+work.display();
 
 var projects = {
 	"projects": [
 		{
-			"title": "Sample project 1",
+			"title": "Network Troubleshooting tool",
 			"dates": "2014",
-			"description": "Website that automated network troubleshooting."
+			"description": "Website that automated network troubleshooting using PERL CGI."
 		}
 	]
-}
+};
 
-//$("#main").prepend(bio.name);
-//$("#main").prepend(bio.role);
-//$("#main").prepend(bio.Welcomemessage);
-//$("#main").prepend(WorkExp.Position);
-//$("#main").append(Education.school1);
-//$("#main").append(Education["school1"]);
-//$("#main").prepend(Education.years);
-//$("#main").append(Education.City);
-
-// Can I acces the work object?
-
-
-
-
-
-
-function displayWork() {
-for (job in work.jobs) {
-
-	$("#workExperience").append(HTMLworkStart);
-
-	var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
-	var formattedEmployerTitle = formattedEmployer + formattedTitle;
-
-	var formattedDate = HTMLworkDates.replace("%data%",work.jobs[job].dates);
-	var formattedDesc = HTMLworkDescription.replace("%data%",work.jobs[job].Description);
-
-	$(".work-entry:last").append(formattedEmployerTitle);
-	$(".work-entry:last").append(formattedDate);
-	$(".work-entry:last").append(formattedDesc);
-	//$("#main").append(formattedEmployerTitle);
-}
-}
-
-
- displayWork();
-
-
-//function locationizer(work_obj) {
-//	var locationArray = [];
-//	for (job in work_obj.jobs) {
-//		console.log(work_obj.jobs[job].location);
-//		var newLocation = work_obj.jobs[job].location;
-//		locationArray.push(newLocation);
-//	}
-//	return locationArray;
-//}
-
-
-//console.log(locationizer(work));
-
-
-//$(document).click(function(loc) {
-//	  	var x = loc.pageX;
-//		var y = loc.pageY;
-//	logClicks(x,y);
-//});
-
-
-function inName(name) {
-	name = name.trim().split(" ");
-	console.log(name);
-	name[1] = name[1].toUpperCase();
-	name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
-
-	return name[0] + " "+name[1];
-
-}
-
-
-$("#main").append(internationalizeButton);
-
-//console.log(projects.projects[0].title);
-projects.display = function () {
+projects.display = function() {
 	for (project in projects.projects) {
 		$("#projects").append(HTMLprojectStart);
 
@@ -241,8 +178,8 @@ projects.display = function () {
 
 		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
 		$(".project-entry:last").append(formattedDescription);
-	}
-}
+	};
+};
 
 projects.display();
 
